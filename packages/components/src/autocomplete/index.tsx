@@ -188,11 +188,18 @@ export function useAutocomplete( {
 		if ( ! autocompleter ) {
 			return;
 		}
-		if ( filteredOptions.length === 0 ) {
+
+		if ( event.defaultPrevented ) {
 			return;
 		}
 
-		if ( event.defaultPrevented ) {
+		if ( event.key === 'Escape' ) {
+			dispatch( { type: 'RESET' } );
+			event.preventDefault();
+			return;
+		}
+
+		if ( filteredOptions.length === 0 ) {
 			return;
 		}
 
@@ -213,11 +220,6 @@ export function useAutocomplete( {
 				}
 				break;
 			}
-
-			case 'Escape':
-				dispatch( { type: 'RESET' } );
-				event.preventDefault();
-				break;
 
 			case 'Enter':
 				select( filteredOptions[ selectedIndex ] );
