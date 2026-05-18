@@ -19,6 +19,7 @@ import { menu } from '@wordpress/icons';
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Page } from '@wordpress/admin-ui';
+import { privateApis as themePrivateApis } from '@wordpress/theme';
 
 /**
  * Internal dependencies
@@ -30,9 +31,9 @@ import useRouteTitle from '../app/use-route-title';
 import { unlock } from '../../lock-unlock';
 import type { CanvasData } from '../../store/types';
 import './style.scss';
-import { UserThemeProvider } from '../user-theme-provider';
 
 const { useLocation, useMatches, Outlet } = unlock( routePrivateApis );
+const { UserThemeProvider } = unlock( themePrivateApis );
 
 export default function Root() {
 	const matches = useMatches();
@@ -60,7 +61,7 @@ export default function Root() {
 	return (
 		<SlotFillProvider>
 			<UserThemeProvider isRoot color={ { bg: '#f8f8f8' } }>
-				<UserThemeProvider color={ { bg: '#1d2327' } }>
+				<UserThemeProvider>
 					<div
 						className={ clsx( 'boot-layout', {
 							'has-canvas': !! canvas || canvas === null,
