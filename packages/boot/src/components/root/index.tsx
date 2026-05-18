@@ -18,8 +18,7 @@ import {
 import { menu } from '@wordpress/icons';
 import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Page } from '@wordpress/admin-ui';
-import { privateApis as themePrivateApis } from '@wordpress/theme';
+import { Page, privateApis as adminUiPrivateApis } from '@wordpress/admin-ui';
 
 /**
  * Internal dependencies
@@ -33,7 +32,7 @@ import type { CanvasData } from '../../store/types';
 import './style.scss';
 
 const { useLocation, useMatches, Outlet } = unlock( routePrivateApis );
-const { UserThemeProvider } = unlock( themePrivateApis );
+const { UserThemeProvider } = unlock( adminUiPrivateApis );
 
 export default function Root() {
 	const matches = useMatches();
