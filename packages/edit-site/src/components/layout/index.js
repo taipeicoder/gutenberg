@@ -275,7 +275,11 @@ function Layout() {
 													backgroundColor,
 											} }
 										>
-											{ areas.preview }
+											<UserThemeProvider
+												color={ { bg: '#ffffff' } }
+											>
+												{ areas.preview }
+											</UserThemeProvider>
 										</ResizableFrame>
 									</ErrorBoundary>
 								</div>
@@ -306,7 +310,7 @@ export default function LayoutWithGlobalStylesProvider( props ) {
 		<SlotFillProvider>
 			{ /** This needs to be within the SlotFillProvider */ }
 			<PluginArea onError={ onPluginAreaError } />
-			<UserThemeProvider isRoot>
+			<UserThemeProvider>
 				<Layout { ...props } />
 			</UserThemeProvider>
 		</SlotFillProvider>
