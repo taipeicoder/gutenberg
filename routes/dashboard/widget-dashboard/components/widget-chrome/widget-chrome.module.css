@@ -40,6 +40,8 @@
 	overflow-y: auto;
 }
 
-.loading {
+.loading,
+.unavailable {
 	height: 100%;
 }
+
