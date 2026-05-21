@@ -76,7 +76,7 @@ export function Actions(): React.ReactNode {
 
 	const { setInserterOpen } = useDashboardUIContext();
 	const isMobileViewport = useSelect(
-		( select ) => select( viewportStore ).isViewportMatch( '< medium' ),
+		( select ) => select( viewportStore ).isViewportMatch( '< small' ),
 		[]
 	);
 
