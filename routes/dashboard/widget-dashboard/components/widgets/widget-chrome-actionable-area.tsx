@@ -13,7 +13,6 @@ import { IconButton, Stack } from '@wordpress/ui';
  */
 import { unlock } from '../../../lock-unlock';
 import { useDashboardInternalContext } from '../../context/dashboard-context';
-import { removeWidgetFromLayout } from '../../utils';
 import styles from './widget-chrome-actionable-area.module.css';
 import type { DashboardWidget, GridTilePlacement } from '../../types';
 
@@ -113,7 +112,11 @@ export function WidgetChromeActionableArea( {
 	};
 
 	const onRemove = () => {
-		onLayoutChange( removeWidgetFromLayout( layout, widget.uuid ) );
+		onLayoutChange(
+			layout.filter(
+				( currentWidget ) => currentWidget.uuid !== widget.uuid
+			)
+		);
 	};
 
 	return (
