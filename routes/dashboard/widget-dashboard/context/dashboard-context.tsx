@@ -101,6 +101,7 @@ function canonicalize( layout: DashboardWidget[] ): DashboardWidget[] {
  */
 interface InternalDashboardContextValue {
 	widgetTypes: WidgetType[];
+	isResolvingWidgetTypes: boolean;
 	layout: DashboardWidget[];
 	onLayoutChange: ( layout: DashboardWidget[] ) => void;
 	onLayoutReset?: () => void;
@@ -164,6 +165,11 @@ interface ProviderProps {
 	 * Widget types available for rendering.
 	 */
 	widgetTypes: WidgetType[];
+
+	/**
+	 * When true, widget types are still loading.
+	 */
+	isResolvingWidgetTypes?: boolean;
 
 	/**
 	 * Committed layout.
@@ -236,6 +242,7 @@ interface ProviderProps {
  */
 export function WidgetDashboardProvider( {
 	widgetTypes,
+	isResolvingWidgetTypes = false,
 	layout: committedLayout,
 	onLayoutChange,
 	onLayoutReset,
@@ -372,6 +379,7 @@ export function WidgetDashboardProvider( {
 	const value = useMemo< InternalDashboardContextValue >(
 		() => ( {
 			widgetTypes,
+			isResolvingWidgetTypes,
 			layout: stagingLayout,
 			onLayoutChange: setStagingLayout,
 			onLayoutReset,
@@ -389,6 +397,7 @@ export function WidgetDashboardProvider( {
 		} ),
 		[
 			widgetTypes,
+			isResolvingWidgetTypes,
 			stagingLayout,
 			onLayoutReset,
 			stagingGridSettings,

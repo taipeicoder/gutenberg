@@ -43,11 +43,11 @@ export const WidgetDashboard = Object.assign(
 		onLayoutChange,
 		onLayoutReset,
 		widgetTypes,
+		isResolvingWidgetTypes,
 		editMode,
 		onEditChange,
 		resolveWidgetModule,
 		gridSettings,
-		onGridSettingsChange,
 		children,
 	}: WidgetDashboardProps ) {
 		return (
@@ -56,11 +56,11 @@ export const WidgetDashboard = Object.assign(
 				onLayoutChange={ onLayoutChange }
 				onLayoutReset={ onLayoutReset }
 				widgetTypes={ widgetTypes }
+				isResolvingWidgetTypes={ isResolvingWidgetTypes }
 				editMode={ editMode }
 				onEditChange={ onEditChange }
 				resolveWidgetModule={ resolveWidgetModule }
 				gridSettings={ gridSettings }
-				onGridSettingsChange={ onGridSettingsChange }
 			>
 				<WidgetDashboardUIProvider>
 					{ children ?? (
