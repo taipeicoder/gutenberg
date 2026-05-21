@@ -1,9 +1,11 @@
 /**
  * WordPress dependencies
  */
+import { useSelect } from '@wordpress/data';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { plus } from '@wordpress/icons';
+import { store as viewportStore } from '@wordpress/viewport';
 // eslint-disable-next-line @wordpress/use-recommended-components
 import { AlertDialog, Button, Stack } from '@wordpress/ui';
 
@@ -73,6 +75,10 @@ export function Actions(): React.ReactNode {
 	}, [ editMode, isEditActionsMounted ] );
 
 	const { setInserterOpen } = useDashboardUIContext();
+	const isMobileViewport = useSelect(
+		( select ) => select( viewportStore ).isViewportMatch( '< medium' ),
+		[]
+	);
 
 	const [ isResetDialogOpen, setIsResetDialogOpen ] = useState( false );
 	const [ isLayoutSettingsOpen, setIsLayoutSettingsOpen ] = useState( false );
@@ -136,7 +142,7 @@ export function Actions(): React.ReactNode {
 						size="compact"
 						onClick={ insert }
 					>
-						<Button.Icon icon={ plus } />
+						{ ! isMobileViewport && <Button.Icon icon={ plus } /> }
 						{ __( 'Add widget' ) }
 					</Button>
 
