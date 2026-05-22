@@ -1,0 +1,1 @@
+import{r,c as e,g as a}from"./iframe-DI3dT3uz.js";var s=a("div",{target:"e19lxcc00"})("");var o=Object.assign(r.forwardRef((function UnforwardedView({as:r,...a},o){return e.jsx(s,{as:r,ref:o,...a})})),{selector:".components-view"});export{o as c};
