@@ -18,7 +18,6 @@ import { getSyncManager } from './sync';
 import {
 	applyPostChangesToCRDTDoc,
 	defaultCollectionSyncConfig,
-	defaultSyncConfig,
 	getPostChangesFromCRDTDoc,
 	POST_META_KEY_FOR_CRDT_DOC_PERSISTENCE,
 } from './utils/crdt';
@@ -475,7 +474,7 @@ async function loadTaxonomyEntities() {
 	} );
 	return Object.entries( taxonomies ?? {} ).map( ( [ name, taxonomy ] ) => {
 		const namespace = taxonomy?.rest_namespace ?? 'wp/v2';
-		const entity = {
+		return {
 			kind: 'taxonomy',
 			baseURL: `/${ namespace }/${ taxonomy.rest_base }`,
 			baseURLParams: { context: 'edit' },
@@ -484,10 +483,6 @@ async function loadTaxonomyEntities() {
 			getTitle: ( record ) => record?.name,
 			supportsPagination: true,
 		};
-
-		entity.syncConfig = defaultSyncConfig;
-
-		return entity;
 	} );
 }
 

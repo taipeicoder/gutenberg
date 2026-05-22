@@ -333,4 +333,22 @@ describe( 'loadTaxonomyEntities', () => {
 
 		expect( entities[ 0 ].supportsPagination ).toBe( true );
 	} );
+
+	it( 'should not enable entity syncing for taxonomy term records', async () => {
+		const mockTaxonomies = {
+			category: {
+				name: 'Categories',
+				rest_base: 'categories',
+			},
+		};
+
+		apiFetch.mockResolvedValueOnce( mockTaxonomies );
+
+		const taxonomyLoader = additionalEntityConfigLoaders.find(
+			( loader ) => loader.kind === 'taxonomy'
+		);
+		const entities = await taxonomyLoader.loadEntities();
+
+		expect( entities[ 0 ].syncConfig ).toBeUndefined();
+	} );
 } );
