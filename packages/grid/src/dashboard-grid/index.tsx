@@ -51,6 +51,7 @@ import { createDashboardDragDropAnimation } from '../shared/drag-overlay-drop-an
 import styles from './grid.module.css';
 
 const dashboardDragDropAnimation = createDashboardDragDropAnimation(
+	styles[ 'drag-preview-frame' ],
 	styles.dragPreviewFrameExiting
 );
 
@@ -529,10 +530,7 @@ export const DashboardGrid = forwardRef< HTMLDivElement, DashboardGridProps >(
 		const DragPreview = renderDragPreview;
 		const dragOverlayContent =
 			activeId && activeClone ? (
-				<div
-					className={ styles[ 'drag-preview-frame' ] }
-					data-wp-dashboard-drag-preview-frame
-				>
+				<div className={ styles[ 'drag-preview-frame' ] }>
 					{ DragPreview ? (
 						<DragPreview itemId={ activeId }>
 							{ activeClone }
