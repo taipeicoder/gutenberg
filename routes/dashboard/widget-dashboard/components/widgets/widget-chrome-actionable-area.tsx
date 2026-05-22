@@ -35,14 +35,14 @@ function WidgetChromeActions( {
 	onRemove,
 }: WidgetChromeActionsProps ) {
 	return (
-		<Stack direction="row" align="center" gap="sm">
+		<Stack direction="row" align="center" gap="xs">
 			<Menu>
 				<Menu.TriggerButton
 					render={
 						<IconButton
 							icon={ moreVertical }
 							label={ __( 'Widget options' ) }
-							size="small"
+							size="compact"
 							variant="minimal"
 							tone="neutral"
 						/>
@@ -73,7 +73,7 @@ function WidgetChromeActions( {
 			<IconButton
 				icon={ trash }
 				label={ __( 'Remove' ) }
-				size="small"
+				size="compact"
 				variant="minimal"
 				tone="neutral"
 				onClick={ onRemove }
