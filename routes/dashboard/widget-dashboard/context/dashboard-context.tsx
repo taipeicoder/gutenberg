@@ -250,7 +250,7 @@ export function WidgetDashboardProvider( {
 	onEditChange,
 	resolveWidgetModule = DEFAULT_RESOLVE_WIDGET_MODULE,
 	gridSettings: committedGridSettings = DEFAULT_GRID,
-	onGridSettingsChange,
+	onGridSettingsChange: publishCommittedGridSettings,
 	children,
 }: ProviderProps ) {
 	const [ stagingLayout, setStagingLayout ] =
@@ -308,7 +308,7 @@ export function WidgetDashboardProvider( {
 			}
 
 			if ( hasGridSettingsChanges ) {
-				onGridSettingsChange?.( stagingGridSettings );
+				publishCommittedGridSettings?.( stagingGridSettings );
 			}
 
 			if ( options?.exitEditMode !== false ) {
@@ -318,7 +318,7 @@ export function WidgetDashboardProvider( {
 		[
 			hasLayoutChanges,
 			hasGridSettingsChanges,
-			onGridSettingsChange,
+			publishCommittedGridSettings,
 			publishLayout,
 			stagingLayout,
 			stagingGridSettings,
@@ -344,14 +344,14 @@ export function WidgetDashboardProvider( {
 			);
 
 			if ( hasGridSettingsChanges ) {
-				onGridSettingsChange?.( stagingGridSettings );
+				publishCommittedGridSettings?.( stagingGridSettings );
 			}
 
 			onEditChange?.( false );
 		},
 		[
 			hasGridSettingsChanges,
-			onGridSettingsChange,
+			publishCommittedGridSettings,
 			onEditChange,
 			publishLayout,
 			stagingGridSettings,
@@ -374,7 +374,7 @@ export function WidgetDashboardProvider( {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ stagingLayout.length === 0 ] );
 
-	const canEditGridSettings = onGridSettingsChange !== undefined;
+	const canEditGridSettings = publishCommittedGridSettings !== undefined;
 
 	const value = useMemo< InternalDashboardContextValue >(
 		() => ( {
